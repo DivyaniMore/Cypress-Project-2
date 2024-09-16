@@ -1,0 +1,128 @@
+{
+  "stats": {
+    "suites": 1,
+    "tests": 2,
+    "passes": 2,
+    "pending": 0,
+    "failures": 0,
+    "start": "2024-09-14T18:35:36.374Z",
+    "end": "2024-09-14T18:37:19.982Z",
+    "duration": 103608,
+    "testsRegistered": 2,
+    "passPercent": 100,
+    "pendingPercent": 0,
+    "other": 0,
+    "hasOther": false,
+    "skipped": 0,
+    "hasSkipped": false
+  },
+  "results": [
+    {
+      "uuid": "f8b4b3f8-ded6-4d6f-9300-aa4044da57b3",
+      "title": "",
+      "fullFile": "cypress\\integration\\basic_Test.cy.js",
+      "file": "cypress\\integration\\basic_Test.cy.js",
+      "beforeHooks": [],
+      "afterHooks": [],
+      "tests": [],
+      "suites": [
+        {
+          "uuid": "ac12f549-735d-4c0c-b013-b04564ff5100",
+          "title": "X-Cart Demo Website Test",
+          "fullFile": "",
+          "file": "",
+          "beforeHooks": [],
+          "afterHooks": [],
+          "tests": [
+            {
+              "title": "Checks logo images, sign in, register, and language dropdown interactions",
+              "fullTitle": "X-Cart Demo Website Test Checks logo images, sign in, register, and language dropdown interactions",
+              "timedOut": null,
+              "duration": 27484,
+              "state": "passed",
+              "speed": "slow",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "// Visit the X-Cart demo website\ncy.visit('https://demo.x-cart.com/demo/home.php');\n// Check if logo with alt=\"Your Company Name\" is displayed using XPath\ncy.xpath('//img[@alt=\"Your Company Name\"]').should('be.visible');\n// Check if the second logo with alt=\"X-Cart\" is displayed using a CSS selector\ncy.get('img[alt=\"X-Cart\"]').should('be.visible');\n// Click on the 'Sign in' link and close the modal\ncy.get('#href_Sign_in').should('be.visible').click();\n// Close the Sign In modal\ncy.get('button[title=\"Close\"]').should('be.visible').click();\n// Click on the 'Register' link\ncy.contains('a', 'Register').should('be.visible').click();\n// Verify navigation to the Register page\ncy.url().should('include', '/register.php');\n// Go back to the homepage\ncy.go('back');",
+              "err": {},
+              "uuid": "8f8e5df0-6989-4afc-b9b0-7fcba3e947aa",
+              "parentUUID": "ac12f549-735d-4c0c-b013-b04564ff5100",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "Verifies visibility and navigation of Apparel, Toys, iGoods, Books, and Computer hardware links",
+              "fullTitle": "X-Cart Demo Website Test Verifies visibility and navigation of Apparel, Toys, iGoods, Books, and Computer hardware links",
+              "timedOut": null,
+              "duration": 72410,
+              "state": "passed",
+              "speed": "slow",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "// Visit the website\ncy.visit('https://demo.x-cart.com/demo_canada/home.php');\n// Check 'Apparel (8)' link, click, and go back\ncy.xpath(\"//a[normalize-space()='Apparel (8)']\").should('be.visible').click();\ncy.url().should('include', '/Apparel'); // Verify navigation\ncy.go('back'); // Go back to home page\n// Check 'Toys' link, click, and go back\ncy.xpath(\"//a[normalize-space()='Toys']\").should('be.visible').click();\ncy.url().should('include', '/Toys-c-5'); // Verify navigation\ncy.go('back');\n// Check 'iGoods (1)' link, click, and go back\ncy.xpath(\"//a[normalize-space()='iGoods (1)']\").should('be.visible').click();\ncy.url().should('include', '/iGoods'); // Verify navigation\ncy.go('back');\n// Check 'Books (7)' link, click, and go back\ncy.xpath(\"//a[normalize-space()='Books (7)']\").should('be.visible').click();\ncy.url().should('include', '/Books'); // Verify navigation\ncy.go('back');\n// Check 'Computer hardware (1)' link, click, and go back\ncy.xpath(\"//a[normalize-space()='Computer hardware (1)']\").should('be.visible').click();\ncy.url().should('include', '/Computer-hardware'); // Verify navigation\ncy.go('back');",
+              "err": {},
+              "uuid": "cc47f0a1-a567-4dfd-8f35-174b3a2eb68c",
+              "parentUUID": "ac12f549-735d-4c0c-b013-b04564ff5100",
+              "isHook": false,
+              "skipped": false
+            }
+          ],
+          "suites": [],
+          "passes": [
+            "8f8e5df0-6989-4afc-b9b0-7fcba3e947aa",
+            "cc47f0a1-a567-4dfd-8f35-174b3a2eb68c"
+          ],
+          "failures": [],
+          "pending": [],
+          "skipped": [],
+          "duration": 99894,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 2000
+        }
+      ],
+      "passes": [],
+      "failures": [],
+      "pending": [],
+      "skipped": [],
+      "duration": 0,
+      "root": true,
+      "rootEmpty": true,
+      "_timeout": 2000
+    }
+  ],
+  "meta": {
+    "mocha": {
+      "version": "7.0.1"
+    },
+    "mochawesome": {
+      "options": {
+        "quiet": false,
+        "reportFilename": "mochawesome",
+        "saveHtml": true,
+        "saveJson": true,
+        "consoleReporter": "spec",
+        "useInlineDiffs": false,
+        "code": true
+      },
+      "version": "7.1.3"
+    },
+    "marge": {
+      "options": {
+        "id": "default",
+        "reportDir": "cypress/reports",
+        "overwrite": false,
+        "html": true,
+        "json": true,
+        "charts": true,
+        "embeddedScreenshots": true,
+        "inlineAssets": true
+      },
+      "version": "6.2.0"
+    }
+  }
+}

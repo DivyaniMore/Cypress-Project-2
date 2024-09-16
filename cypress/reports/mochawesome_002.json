@@ -1,0 +1,109 @@
+{
+  "stats": {
+    "suites": 1,
+    "tests": 1,
+    "passes": 1,
+    "pending": 0,
+    "failures": 0,
+    "start": "2024-09-14T18:38:08.724Z",
+    "end": "2024-09-14T18:39:26.566Z",
+    "duration": 77842,
+    "testsRegistered": 1,
+    "passPercent": 100,
+    "pendingPercent": 0,
+    "other": 0,
+    "hasOther": false,
+    "skipped": 0,
+    "hasSkipped": false
+  },
+  "results": [
+    {
+      "uuid": "524dfb66-6359-4da0-a536-2da6363c6045",
+      "title": "",
+      "fullFile": "cypress\\integration\\functional_test.cy.js",
+      "file": "cypress\\integration\\functional_test.cy.js",
+      "beforeHooks": [],
+      "afterHooks": [],
+      "tests": [],
+      "suites": [
+        {
+          "uuid": "6a16b4bd-c92d-4b6e-8fd6-b575f17ba6f8",
+          "title": "X-Cart Shopping and Checkout Test",
+          "fullFile": "",
+          "file": "",
+          "beforeHooks": [],
+          "afterHooks": [],
+          "tests": [
+            {
+              "title": "Should search, add a product to cart, and complete checkout",
+              "fullTitle": "X-Cart Shopping and Checkout Test Should search, add a product to cart, and complete checkout",
+              "timedOut": null,
+              "duration": 75111,
+              "state": "passed",
+              "speed": "slow",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "// Visit the website\ncy.visit('https://demo.x-cart.com/demo_canada/home.php');\ncy.get('input[name=\"posted_data[substring]\"]').first() // Use .first() to make sure only the first matching input is selected\n.clear() // Clear the input field\n.type('toys'); // Type 'toys' into the input field\n// Click the 'Search' button forcefully to submit the form\ncy.get('button.search-button[type=\"submit\"]').first().click({\n  force: true\n});\n// Ensure the product image is visible and click on it\ncy.xpath(\"//body/div[@id='page-container']/div[@id='page-container2']/div[@id='content-container']/div[@id='content-container2']/div[@id='center']/div[@id='center-main']/div[@class='dialog products-dialog list-dialog']/div[@class='content']/div[@class='products products-list products-div']/div[2]/div[1]/div[1]/div[1]\").find('img').should('be.visible').click(); // Click on the product image\n// Check product availability and select quantity\ncy.get('#product_avail').should('be.visible');\ncy.get('select#product_avail').select('2'); // Select 2 as quantity\n// Add the product to the cart\ncy.get('button[title=\"Add to cart\"]').click();\n// Proceed to checkout in the popup\ncy.get('a.proceed-to-checkout').click();\n// Fill out the checkout form\ncy.get('#b_firstname').type('John');\ncy.get('#b_lastname').type('Doe');\ncy.get('#b_address').type('123 Cypress St');\ncy.get('#email').type('johndoe@example.com');\n// Submit the checkout form\ncy.get('button[title=\"Submit\"]').click();\n// Verify the payment step is visible\ncy.get('div[id=\"opc_payment\"] h2').should('be.visible');\n// Verify the payment method is available and shipping options are visible\ncy.get('label[for=\"pm4\"]').should('be.visible'); // Check payment method label\ncy.get('label[for=\"shipping82\"]').should('be.visible'); // Check shipping option label\n// Accept terms and conditions\ncy.get('#accept_terms').check();\n// Submit the order\ncy.get('.button-left').click();\n// Verify the confirmation message\ncy.get('div[class=\"title\"] h2').should('contain.text', 'Confirmation');",
+              "err": {},
+              "uuid": "741a519d-39c1-4b43-b871-94c3f872c22c",
+              "parentUUID": "6a16b4bd-c92d-4b6e-8fd6-b575f17ba6f8",
+              "isHook": false,
+              "skipped": false
+            }
+          ],
+          "suites": [],
+          "passes": [
+            "741a519d-39c1-4b43-b871-94c3f872c22c"
+          ],
+          "failures": [],
+          "pending": [],
+          "skipped": [],
+          "duration": 75111,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 2000
+        }
+      ],
+      "passes": [],
+      "failures": [],
+      "pending": [],
+      "skipped": [],
+      "duration": 0,
+      "root": true,
+      "rootEmpty": true,
+      "_timeout": 2000
+    }
+  ],
+  "meta": {
+    "mocha": {
+      "version": "7.0.1"
+    },
+    "mochawesome": {
+      "options": {
+        "quiet": false,
+        "reportFilename": "mochawesome",
+        "saveHtml": true,
+        "saveJson": true,
+        "consoleReporter": "spec",
+        "useInlineDiffs": false,
+        "code": true
+      },
+      "version": "7.1.3"
+    },
+    "marge": {
+      "options": {
+        "id": "default",
+        "reportDir": "cypress/reports",
+        "overwrite": false,
+        "html": true,
+        "json": true,
+        "charts": true,
+        "embeddedScreenshots": true,
+        "inlineAssets": true
+      },
+      "version": "6.2.0"
+    }
+  }
+}

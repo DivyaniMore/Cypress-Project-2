@@ -1,0 +1,113 @@
+{
+  "stats": {
+    "suites": 1,
+    "tests": 1,
+    "passes": 0,
+    "pending": 0,
+    "failures": 1,
+    "start": "2024-09-14T18:37:23.107Z",
+    "end": "2024-09-14T18:38:05.426Z",
+    "duration": 42319,
+    "testsRegistered": 1,
+    "passPercent": 0,
+    "pendingPercent": 0,
+    "other": 0,
+    "hasOther": false,
+    "skipped": 0,
+    "hasSkipped": false
+  },
+  "results": [
+    {
+      "uuid": "d8c6a9c6-5585-48c8-8e65-7a16250583b0",
+      "title": "",
+      "fullFile": "cypress\\integration\\edge.cy.js",
+      "file": "cypress\\integration\\edge.cy.js",
+      "beforeHooks": [],
+      "afterHooks": [],
+      "tests": [],
+      "suites": [
+        {
+          "uuid": "73f8b97a-c0af-40d7-a575-09919d10b594",
+          "title": "X-Cart Registration Test",
+          "fullFile": "",
+          "file": "",
+          "beforeHooks": [],
+          "afterHooks": [],
+          "tests": [
+            {
+              "title": "Should handle registration, error messages, and existing email",
+              "fullTitle": "X-Cart Registration Test Should handle registration, error messages, and existing email",
+              "timedOut": null,
+              "duration": 39296,
+              "state": "failed",
+              "speed": null,
+              "pass": false,
+              "fail": true,
+              "pending": false,
+              "context": "{\n  \"title\": \"cypress-mochawesome-reporter-screenshots\",\n  \"value\": [\n    [\n      \"\\\\edge.cy.js\\\\X-Cart Registration Test -- Should handle registration, error messages, and existing email (failed).png\"\n    ]\n  ]\n}",
+              "code": "// Visit the website\ncy.visit('https://demo.x-cart.com/demo_canada/home.php');\n// Verify the 'Register' link is visible and click it\ncy.contains('a', 'Register').should('be.visible').click();\n// Try to submit the form without filling required fields\ncy.get('.button-left').click();\n// Check if the alert for missing 'First name' appears\ncy.get('div.xalertbox').should('contain.text', \"The required field 'First name' is empty!\").should('be.visible');\n// Click the \"OK\" button to close the alert\ncy.get('button.ui-button.ui-corner-all.ui-widget').contains('OK').click();\n// Now fill in the registration form\ncy.get('#firstname').type('John');\ncy.get('#lastname').type('Doe');\ncy.get('input#email').type('jonny@gmail.com'); // Use an email for registration\ncy.get('#passwd1').type('Password123');\ncy.get('#passwd2').type('Password123');\n// Check the \"I accept the terms\" checkbox\ncy.get('#accept_terms_register').check();\n// Click the 'Create account' button\ncy.get('.button-left').click();\n// Check if an alert for an already registered email appears\ncy.get('p.error-message').should('contain.text', 'Email address already exists in the database!').should('be.visible');\n// Clear the email field and enter a new email\ncy.get('input#email').clear().type('newemail@example.com');\n// Re-enter the password to avoid clearing it\ncy.get('#passwd1').clear().type('NewPassword123');\ncy.get('#passwd2').clear().type('NewPassword123');\n// Check the \"I accept the terms\" checkbox again\ncy.get('#accept_terms_register').check();\n// Click the 'Create account' button again\ncy.get('.button-left').click();\n// Optionally, assert that registration was successful by checking for a URL change or message\ncy.url().should('include', '/address_book.php');\n// Optionally, try again with a different email or handle accordingly",
+              "err": {
+                "message": "AssertionError: Timed out retrying after 10000ms: Expected to find element: `div.xalertbox`, but never found it.",
+                "estack": "AssertionError: Timed out retrying after 10000ms: Expected to find element: `div.xalertbox`, but never found it.\n    at Context.eval (webpack:///./cypress/integration/edge.cy.js:112:9)",
+                "diff": null
+              },
+              "uuid": "a01fefa5-fa63-4a7f-86ca-8ab832916fc7",
+              "parentUUID": "73f8b97a-c0af-40d7-a575-09919d10b594",
+              "isHook": false,
+              "skipped": false
+            }
+          ],
+          "suites": [],
+          "passes": [],
+          "failures": [
+            "a01fefa5-fa63-4a7f-86ca-8ab832916fc7"
+          ],
+          "pending": [],
+          "skipped": [],
+          "duration": 39296,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 2000
+        }
+      ],
+      "passes": [],
+      "failures": [],
+      "pending": [],
+      "skipped": [],
+      "duration": 0,
+      "root": true,
+      "rootEmpty": true,
+      "_timeout": 2000
+    }
+  ],
+  "meta": {
+    "mocha": {
+      "version": "7.0.1"
+    },
+    "mochawesome": {
+      "options": {
+        "quiet": false,
+        "reportFilename": "mochawesome",
+        "saveHtml": true,
+        "saveJson": true,
+        "consoleReporter": "spec",
+        "useInlineDiffs": false,
+        "code": true
+      },
+      "version": "7.1.3"
+    },
+    "marge": {
+      "options": {
+        "id": "default",
+        "reportDir": "cypress/reports",
+        "overwrite": false,
+        "html": true,
+        "json": true,
+        "charts": true,
+        "embeddedScreenshots": true,
+        "inlineAssets": true
+      },
+      "version": "6.2.0"
+    }
+  }
+}

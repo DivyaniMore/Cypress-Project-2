@@ -1,0 +1,54 @@
+# .github/workflows/cypress.yml
+
+name: Run Cypress Tests
+
+# Trigger the workflow on push and pull request events
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+# Define the jobs that will be executed
+jobs:
+  test:
+    runs-on: ubuntu-latest # Use the latest version of Ubuntu for the runner
+
+    # Define the steps of the job
+    steps:
+      # Step 1: Checkout the repository code
+      - name: Checkout the repository
+        uses: actions/checkout@v3
+
+      # Step 2: Set up Node.js (required for Cypress)
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '18' # Use Node.js version 18.x
+
+      # Step 3: Cache node modules to improve performance
+      - name: Cache node modules
+        uses: actions/cache@v3
+        with:
+          path: node_modules
+          key: ${{ runner.os }}-node_modules-${{ hashFiles('package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-node_modules-
+
+      # Step 4: Install dependencies
+      - name: Install dependencies
+        run: npm install
+
+      # Step 5: Run Cypress tests
+      - name: Run Cypress tests
+        run: npm run test # Make sure "test" is a script in your package.json that runs Cypress tests
+
+      # Optional Step: Upload Cypress test results or artifacts
+      - name: Upload Cypress test results
+        if: failure()
+        uses: actions/upload-artifact@v3
+        with:
+          name: cypress-test-results
+          path: cypress/results
